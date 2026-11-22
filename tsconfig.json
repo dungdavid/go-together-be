@@ -15,7 +15,6 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "sourceMap": true,
-    "types": ["jest", "node"],
-    "allowJs": true
+    "types": ["jest", "node"]
   }
 }
