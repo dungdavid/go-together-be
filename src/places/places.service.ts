@@ -18,6 +18,7 @@ export class PlacesService {
         visitedAt: dto.visitedAt ? new Date(dto.visitedAt) : undefined,
         coverPhotoUrl: dto.coverPhotoUrl,
         notes: dto.notes,
+        perspective: dto.perspective,
       },
       ...placeWithRelationsArgs,
     });
@@ -47,6 +48,7 @@ export class PlacesService {
         visitedAt: dto.visitedAt ? new Date(dto.visitedAt) : undefined,
         coverPhotoUrl: dto.coverPhotoUrl,
         notes: dto.notes,
+        perspective: dto.perspective,
       },
       ...placeWithRelationsArgs,
     });

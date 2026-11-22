@@ -63,6 +63,7 @@ describe('PlacesService', () => {
         visitedAt: undefined,
         coverPhotoUrl: undefined,
         notes: undefined,
+        perspective: undefined,
       },
       ...placeWithRelationsArgs,
     });

@@ -6,7 +6,11 @@
     "build": "nest build",
     "start": "nest start",
     "start:dev": "nest start --watch",
-    "test": "jest"
+    "test": "jest",
+    "db:seed": "ts-node prisma/seed.ts"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "jest": {
     "moduleFileExtensions": [

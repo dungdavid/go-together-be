@@ -8,6 +8,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Perspective {
+  shared
+  partnerA
+  partnerB
+}
+
 model Place {
   id            String          @id @default(uuid())
   name          String
@@ -17,6 +23,7 @@ model Place {
   visitedAt     DateTime?
   coverPhotoUrl String?
   notes         String?
+  perspective   Perspective     @default(shared)
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
   checklist     ChecklistItem[]

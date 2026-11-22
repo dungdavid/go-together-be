@@ -1,4 +1,5 @@
-import { IsISO8601, IsLatitude, IsLongitude, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsISO8601, IsLatitude, IsLongitude, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Perspective } from '@prisma/client';
 
 export class CreatePlaceDto {
   @IsString()
@@ -26,4 +27,8 @@ export class CreatePlaceDto {
   @IsOptional()
   @IsString()
   notes?: string;
+
+  @IsOptional()
+  @IsEnum(Perspective)
+  perspective?: Perspective;
 }
