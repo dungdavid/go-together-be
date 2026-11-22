@@ -16,7 +16,10 @@ async function bootstrap(): Promise<void> {
 
 export default async function handler(req: Request, res: Response): Promise<void> {
   if (!bootstrapPromise) {
-    bootstrapPromise = bootstrap();
+    bootstrapPromise = bootstrap().catch((err: unknown) => {
+      bootstrapPromise = null;
+      throw err;
+    });
   }
   await bootstrapPromise;
   expressApp(req, res);
