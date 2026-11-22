@@ -4,9 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { PlacesModule } from './places/places.module';
+import { ChecklistItemsModule } from './checklist-items/checklist-items.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), PrismaModule, PlacesModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), PrismaModule, PlacesModule, ChecklistItemsModule],
   controllers: [AppController],
   providers: [AppService],
 })
