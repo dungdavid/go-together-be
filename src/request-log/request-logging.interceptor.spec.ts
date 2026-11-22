@@ -65,4 +65,20 @@ describe('RequestLoggingInterceptor', () => {
       },
     });
   });
+
+  it('still delivers the response when the log write fails', (done) => {
+    const context = buildContext();
+    const next: CallHandler = { handle: () => of({ ok: true }) };
+    requestLogCreate.mockRejectedValueOnce(new Error('db down'));
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+
+    interceptor.intercept(context, next).subscribe((value) => {
+      expect(value).toEqual({ ok: true });
+      setImmediate(() => {
+        expect(consoleErrorSpy).toHaveBeenCalledWith('Failed to write request log', expect.any(Error));
+        consoleErrorSpy.mockRestore();
+        done();
+      });
+    });
+  });
 });
