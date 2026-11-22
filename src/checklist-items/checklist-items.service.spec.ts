@@ -86,4 +86,35 @@ describe('ChecklistItemsService', () => {
 
     expect(result).toEqual(updated);
   });
+
+  it('throws NotFoundException when the place does not exist on findAllForPlace', async () => {
+    placesService.findOne.mockRejectedValue(new NotFoundException('Place #1 not found'));
+
+    await expect(service.findAllForPlace('1')).rejects.toThrow(NotFoundException);
+    expect(checklistItem.findMany).not.toHaveBeenCalled();
+  });
+
+  it('removes a checklist item after verifying it exists', async () => {
+    const existing = {
+      id: 'c1',
+      placeId: '1',
+      label: 'Buy ticket',
+      done: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    checklistItem.findUnique.mockResolvedValue(existing);
+    checklistItem.delete.mockResolvedValue(existing);
+
+    await service.remove('c1');
+
+    expect(checklistItem.delete).toHaveBeenCalledWith({ where: { id: 'c1' } });
+  });
+
+  it('throws NotFoundException when removing a checklist item that does not exist', async () => {
+    checklistItem.findUnique.mockResolvedValue(null);
+
+    await expect(service.remove('missing')).rejects.toThrow(NotFoundException);
+    expect(checklistItem.delete).not.toHaveBeenCalled();
+  });
 });
