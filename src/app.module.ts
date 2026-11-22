@@ -6,6 +6,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { PlacesModule } from './places/places.module';
 import { ChecklistItemsModule } from './checklist-items/checklist-items.module';
 import { FoodItemsModule } from './food-items/food-items.module';
+import { PhotosModule } from './photos/photos.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { FoodItemsModule } from './food-items/food-items.module';
     PlacesModule,
     ChecklistItemsModule,
     FoodItemsModule,
+    PhotosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
