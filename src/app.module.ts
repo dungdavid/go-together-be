@@ -8,12 +8,14 @@ import { ChecklistItemsModule } from './checklist-items/checklist-items.module';
 import { FoodItemsModule } from './food-items/food-items.module';
 import { PhotosModule } from './photos/photos.module';
 import { RequestLogModule } from './request-log/request-log.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     PrismaModule,
     RequestLogModule,
+    AuthModule,
     PlacesModule,
     ChecklistItemsModule,
     FoodItemsModule,
