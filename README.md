@@ -83,6 +83,10 @@ Each is scoped to a place for creation/listing, and addressed directly by id for
 | Food item | `POST`/`GET /places/:placeId/food-items` | `PATCH`/`DELETE /food-items/:id` |
 | Photo | `POST`/`GET /places/:placeId/photos` | `PATCH`/`DELETE /photos/:id` |
 
+#### Photo uploads
+
+The backend never handles binary image uploads — `Photo.url` is a plain string. The frontend uploads the file directly to [Cloudinary](https://cloudinary.com) (via an **unsigned** upload preset) and sends the resulting `secure_url` as the `url` field to `POST /places/:placeId/photos`. This avoids Vercel serverless function body-size/duration limits and keeps the backend's responsibility to "store a URL."
+
 ### Request logging
 
 Every request is logged to the `RequestLog` table (method, path, status code, duration, IP, user agent) via a global interceptor. Logging failures never fail the actual request.
